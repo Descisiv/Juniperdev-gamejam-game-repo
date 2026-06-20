@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
+    public Animator Anim;
     public Slider ChargeSlider;
     public float dizzy;
     public float charge;
@@ -29,13 +30,16 @@ public class Playermove : MonoBehaviour
         //might be a state machine
         if (Input.GetKey(KeyCode.Space)) {
             state = "charging";
+            Anim.SetInteger("state", 2);
         }else if(charge > 0)
         {
             state = "drilling";
+            Anim.SetInteger("state", 1);
         }
         else
         {
             state = "static";
+            Anim.SetInteger("state", 0);
         }
 
         //hold a/d to change angle
@@ -69,5 +73,7 @@ public class Playermove : MonoBehaviour
 
         //set energy bar
         ChargeSlider.value = charge / MAXCHARGE;
+        //animation speed proportional to charge
+        Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * 5);
     }
 }
