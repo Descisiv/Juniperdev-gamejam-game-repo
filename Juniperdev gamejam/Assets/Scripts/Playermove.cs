@@ -5,18 +5,24 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
+    bool frozen;
+    public Animator Anim;
+    public Slider DizzySlider;
     public Slider ChargeSlider;
     public float dizzy;
     public float charge;
-    const float CHARGERATE = 10;
-    const float NATRCHARGEDEC = 2;
-    const float MAXCHARGE = 20;
-    const float DIZZYRATE = 3;
+    float speed = 30f;
+    const float CHARGERATE = 100;
+    const float NATRCHARGEDEC = 5;
+    const float MAXCHARGE = 100;
+    const float DIZZYRATE = 10;
     const float MAXDIZZY = 100;
-    const float MAXANGLE = 45;
-    const float TURNRATE = 30;
+    const float MAXANGLE = 90;
+    const float TURNRATE = 120;
+    const float NATRDIZZYDEC = 20;
+    const float DIZZYMULT = 2;
     float turn;
-    string state = "static";
+    public string state = "static";
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +33,18 @@ public class Playermove : MonoBehaviour
     void Update()
     {
         //might be a state machine
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.Space) && !frozen) {
             state = "charging";
-        }else if(charge > 0)
+            Anim.SetInteger("state", 2);
+        }else if(charge > 0 && !frozen)
         {
             state = "drilling";
+            Anim.SetInteger("state", 1);
         }
-        else
+        else if(!frozen)
         {
             state = "static";
+            Anim.SetInteger("state", 0);
         }
 
         //hold a/d to change angle
@@ -59,7 +68,7 @@ public class Playermove : MonoBehaviour
         if (state == "drilling")
         {
             float angle = transform.localEulerAngles.z * Mathf.PI/180;
-            transform.position += new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * charge * Time.deltaTime;
+            transform.position += new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * charge / MAXCHARGE * speed * Time.deltaTime;
         }
         //charge naturally decays
         if (charge > 0 && state != "charging")
@@ -67,7 +76,39 @@ public class Playermove : MonoBehaviour
             charge -= NATRCHARGEDEC * Time.deltaTime;
         }
 
-        //set energy bar
+        
+        //animation speed proportional to charge
+        Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * 5);
+        //update dizzy
+        if (state == "drilling")
+        {
+            dizzy += DIZZYRATE * charge / MAXCHARGE * DIZZYMULT * Time.deltaTime;
+        }
+        else
+        {
+            dizzy -= NATRDIZZYDEC * Time.deltaTime;
+        }
+        //set bars
         ChargeSlider.value = charge / MAXCHARGE;
+        DizzySlider.value = dizzy / MAXDIZZY;
+
+        //stun if dizzy too high
+        if(dizzy >= MAXDIZZY)
+        {
+            StartCoroutine(Stun());
+        }
+        if(dizzy < 0)
+        {
+            dizzy = 0;
+        }
+    }
+
+    IEnumerator Stun()
+    {
+        frozen = true;
+        charge = 0;
+        dizzy = MAXDIZZY / 2;
+        yield return new WaitForSeconds(2);
+        frozen = false;
     }
 }
