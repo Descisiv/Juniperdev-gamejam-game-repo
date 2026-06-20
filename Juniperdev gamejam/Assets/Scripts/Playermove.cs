@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
-    bool frozen;
+    public bool frozen;
     public Animator Anim;
     public Slider DizzySlider;
     public Slider ChargeSlider;
