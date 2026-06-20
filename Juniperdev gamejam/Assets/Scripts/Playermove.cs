@@ -9,13 +9,13 @@ public class Playermove : MonoBehaviour
     public Slider ChargeSlider;
     public float dizzy;
     public float charge;
-    const float CHARGERATE = 10;
+    const float CHARGERATE = 30;
     const float NATRCHARGEDEC = 2;
-    const float MAXCHARGE = 20;
+    const float MAXCHARGE = 30;
     const float DIZZYRATE = 3;
     const float MAXDIZZY = 100;
     const float MAXANGLE = 45;
-    const float TURNRATE = 30;
+    const float TURNRATE = 90;
     float turn;
     string state = "static";
     // Start is called before the first frame update
@@ -44,13 +44,8 @@ public class Playermove : MonoBehaviour
 
         //hold a/d to change angle
         turn = Input.GetAxisRaw("Horizontal");
-        if (transform.localEulerAngles.z < MAXANGLE || transform.localEulerAngles.z > 360 - MAXANGLE * 2 && turn == 1)
-        {
-            transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
-        }else if((transform.localEulerAngles.z > 360 - MAXANGLE || transform.localEulerAngles.z < 2 * MAXANGLE) && turn == -1)
-        {
-            transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
-        }
+        transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+
         
 
         //when holding space, drill velocity(charge) increases
