@@ -5,28 +5,23 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
+    public CaveGeneratorReal caveGen;
     public bool frozen;
     public Animator Anim;
-    public Slider DizzySlider;
     public Slider ChargeSlider;
-    public float dizzy;
     public float charge;
     float speed = 30f;
     const float CHARGERATE = 100;
     const float NATRCHARGEDEC = 5;
     const float MAXCHARGE = 100;
-    const float DIZZYRATE = 10;
-    const float MAXDIZZY = 100;
     const float MAXANGLE = 90;
     const float TURNRATE = 120;
-    const float NATRDIZZYDEC = 20;
-    const float DIZZYMULT = 2;
     float turn;
     public string state = "static";
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector3(caveGen.width / 2 * caveGen.gridSize, caveGen.height * caveGen.gridSize + 2.5f);
     }
 
     // Update is called once per frame
@@ -79,36 +74,7 @@ public class Playermove : MonoBehaviour
         
         //animation speed proportional to charge
         Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * 5);
-        //update dizzy
-        if (state == "drilling")
-        {
-            dizzy += DIZZYRATE * charge / MAXCHARGE * DIZZYMULT * Time.deltaTime;
-        }
-        else
-        {
-            dizzy -= NATRDIZZYDEC * Time.deltaTime;
-        }
-        //set bars
+        //set bar
         ChargeSlider.value = charge / MAXCHARGE;
-        DizzySlider.value = dizzy / MAXDIZZY;
-
-        //stun if dizzy too high
-        if(dizzy >= MAXDIZZY)
-        {
-            StartCoroutine(Stun());
-        }
-        if(dizzy < 0)
-        {
-            dizzy = 0;
-        }
-    }
-
-    IEnumerator Stun()
-    {
-        frozen = true;
-        charge = 0;
-        dizzy = MAXDIZZY / 2;
-        yield return new WaitForSeconds(2);
-        frozen = false;
     }
 }

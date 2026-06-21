@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class CaveGeneratorReal : MonoBehaviour
 {
+    public float gridSize;
     public int width;
     public int height;
     public int smoothCycles;
+    public int stoneDirtThreshold;
+    public int stoneDirtCycles;
 
     private int[,] cavePoints;
 
     [Range(0, 100)]
     public int randFillPercent;
+    //dirt takes difference between it and stone fill
+    [Range(0, 100)]
+    public int randDirtPercent;
     [Range(0, 8)]
     public int threshold;
 
     public GameObject stone;
+    public GameObject dirt;
     private void Awake()
     {
         GenerateCave();
@@ -49,27 +56,67 @@ public class CaveGeneratorReal : MonoBehaviour
                 }
             }
         }
+        //discern between filled and empty
         for (int i = 0; i < smoothCycles; i++)
         {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    int neighboringWalls = GetNeighbors(x, y);
+                        int neighboringWalls = GetNeighbors(x, y, 1);
+
+                        if (neighboringWalls > threshold)
+                        {
+                            cavePoints[x, y] = 1;
+                        }
+                        else if (neighboringWalls < threshold)
+                        {
+                            cavePoints[x, y] = 0;
+                        }
+                }
+            }
+        }
+        //randomize between dirt and stone
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (!(cavePoints[x,y] == 0))
+                {
+                    if(randChoice.Next(0, 100) < randDirtPercent)
+                    {
+                        cavePoints[x, y] = 1;
+                    }
+                    else
+                    {
+                        cavePoints[x, y] = 2;
+                    }
+                }
+            }
+        }
+        //smooth between dirt and stone
+        for (int i = 0; i < stoneDirtCycles; i++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int neighboringWalls = GetNeighbors(x, y, 2);
 
                     if (neighboringWalls > threshold)
                     {
-                        cavePoints[x, y] = 1;
-                    } else if (neighboringWalls < threshold)
+                        cavePoints[x, y] = 2;
+                    }
+                    else if (neighboringWalls < threshold)
                     {
-                        cavePoints[x, y] = 0;
+                        cavePoints[x, y] = 1;
                     }
                 }
             }
         }
     }
 
-    private int GetNeighbors(int pointX, int pointY)
+    private int GetNeighbors(int pointX, int pointY, int initial)
     {
         int wallNeighbors = 0;
         for (int x = pointX - 1; x <= pointX + 1; x++)
@@ -80,7 +127,7 @@ public class CaveGeneratorReal : MonoBehaviour
                 {
                     if (x != pointX || y != pointY)
                     {
-                        if (cavePoints[x,y] == 1)
+                        if (cavePoints[x,y] == initial)
                         {
                             wallNeighbors++;
                         }
@@ -102,9 +149,12 @@ public class CaveGeneratorReal : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 if (cavePoints[x,y] == 1) {
-                    Instantiate(stone, new Vector3(x, y, 5), Quaternion.identity, gameObject.transform);
+                    Instantiate(stone, new Vector3(gridSize * x, gridSize * y, 5), Quaternion.identity, gameObject.transform);
+                }else if (cavePoints[x, y] == 2)
+                {
+                    Instantiate(dirt, new Vector3(gridSize * x, gridSize * y, 5), Quaternion.identity, gameObject.transform);
                 }
-               
+
             }
         }
     }

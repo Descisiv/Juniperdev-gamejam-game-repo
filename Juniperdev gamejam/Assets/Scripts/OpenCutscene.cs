@@ -6,7 +6,6 @@ public class OpenCutscene : MonoBehaviour
 {
     bool hasPlayed;
     public GameObject EnergyBar;
-    public GameObject DizzyBar;
     public Playermove playermove;
     public Animator PlayerAnim;
     public GameObject Title;
@@ -36,7 +35,6 @@ public class OpenCutscene : MonoBehaviour
         playermove.frozen = false;
         Title.SetActive(false);
         EnergyBar.SetActive(true);
-        DizzyBar.SetActive(true);
         PlayerAnim.SetInteger("state", 0);
     }
 }
