@@ -19,9 +19,11 @@ public class CaveGeneratorReal : MonoBehaviour
     private void Awake()
     {
         GenerateCave();
+        Debug.Log(cavePoints);
     }
     void Start()
     {
+        Debug.Log("Place Grid called");
         PlaceGrid();
     }
 
@@ -60,7 +62,8 @@ public class CaveGeneratorReal : MonoBehaviour
                     if (neighboringWalls > threshold)
                     {
                         cavePoints[x, y] = 1;
-                    } else if (neighboringWalls < threshold)
+                    }
+                    else if (neighboringWalls < threshold)
                     {
                         cavePoints[x, y] = 0;
                     }
@@ -80,7 +83,7 @@ public class CaveGeneratorReal : MonoBehaviour
                 {
                     if (x != pointX || y != pointY)
                     {
-                        if (cavePoints[x,y] == 1)
+                        if (cavePoints[x, y] == 1)
                         {
                             wallNeighbors++;
                         }
@@ -101,10 +104,11 @@ public class CaveGeneratorReal : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (cavePoints[x,y] == 1) {
+                if (cavePoints[x, y] == 1)
+                {
                     Instantiate(stone, new Vector3(x, y, 5), Quaternion.identity, gameObject.transform);
                 }
-               
+
             }
         }
     }
