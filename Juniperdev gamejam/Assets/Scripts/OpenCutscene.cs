@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OpenCutscene : MonoBehaviour
 {
+    public TimerHandler timerHandler;
     bool hasPlayed;
     public GameObject EnergyBar;
     public Playermove playermove;
@@ -32,6 +33,7 @@ public class OpenCutscene : MonoBehaviour
         TitleAnim.SetBool("Start", true);
         PlayerAnim.SetInteger("state", 3);
         yield return new WaitForSeconds(2);
+        timerHandler.playing = true;
         playermove.frozen = false;
         Title.SetActive(false);
         EnergyBar.SetActive(true);

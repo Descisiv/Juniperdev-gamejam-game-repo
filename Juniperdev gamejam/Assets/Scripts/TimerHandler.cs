@@ -6,6 +6,7 @@ using TMPro;
 
 public class TimerHandler : MonoBehaviour
 {
+    public bool playing;
     public GameObject Player;
     public TMP_Text Timer;
     public float TimeLeft = 30;
@@ -20,7 +21,10 @@ public class TimerHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeLeft -= Time.deltaTime;
+        if (playing)
+        {
+            TimeLeft -= Time.deltaTime;
+        }
         if(Mathf.Floor(TimeLeft) == 0)
         {
             seconds = "00";

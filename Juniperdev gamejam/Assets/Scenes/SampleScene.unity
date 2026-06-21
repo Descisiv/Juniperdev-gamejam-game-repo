@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccfa8714dcf3864391085fb7764eae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerHandler: {fileID: 1963154470}
   EnergyBar: {fileID: 2028638612}
   playermove: {fileID: 1324310243}
   PlayerAnim: {fileID: 1324310244}
@@ -655,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playermove: {fileID: 1324310243}
+  timerhandler: {fileID: 1963154470}
 --- !u!1 &931262509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,6 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1426e90b5ebadda4b9a72603c52c9f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playing: 0
   Player: {fileID: 1324310238}
   Timer: {fileID: 1551143406}
   TimeLeft: 30

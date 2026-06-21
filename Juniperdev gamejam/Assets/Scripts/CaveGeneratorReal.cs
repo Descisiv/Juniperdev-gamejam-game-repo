@@ -18,11 +18,15 @@ public class CaveGeneratorReal : MonoBehaviour
     //dirt takes difference between it and stone fill
     [Range(0, 100)]
     public int randDirtPercent;
+    //ores are randomly generated after cave generation, considering all filled in blocks
+    [Range(0, 1)]
+    public float randDiamondPercent;
     [Range(0, 8)]
     public int threshold;
 
     public GameObject stone;
     public GameObject dirt;
+    public GameObject Diamond;
     private void Awake()
     {
         GenerateCave();
@@ -114,6 +118,18 @@ public class CaveGeneratorReal : MonoBehaviour
                 }
             }
         }
+
+        //generate ores
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (!(cavePoints[x, y] == 0) && randChoice.NextDouble() <= randDiamondPercent)
+                {
+                    cavePoints[x, y] = 3;
+                }
+            }
+        }
     }
 
     private int GetNeighbors(int pointX, int pointY, int initial)
@@ -153,6 +169,9 @@ public class CaveGeneratorReal : MonoBehaviour
                 }else if (cavePoints[x, y] == 2)
                 {
                     Instantiate(dirt, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
+                }else if (cavePoints[x, y] == 3)
+                {
+                    Instantiate(Diamond, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
                 }
             }
         }
