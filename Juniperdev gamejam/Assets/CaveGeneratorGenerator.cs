@@ -24,9 +24,10 @@ public class CaveGeneratorGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.position.y < -1 * gridSize * height * (GenerationsCleared + 1))
+        if (Player.position.y < -1 * gridSize * height * (GenerationsCleared + 1))
         {
-            switch (i) {
+            switch (i)
+            {
                 case 1:
                     i++;
                     i = i % 3;
