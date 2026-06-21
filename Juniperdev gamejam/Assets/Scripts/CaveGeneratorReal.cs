@@ -149,12 +149,11 @@ public class CaveGeneratorReal : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 if (cavePoints[x,y] == 1) {
-                    Instantiate(stone, new Vector3(gridSize * x, gridSize * y, 5), Quaternion.identity, gameObject.transform);
+                    Instantiate(stone, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
                 }else if (cavePoints[x, y] == 2)
                 {
-                    Instantiate(dirt, new Vector3(gridSize * x, gridSize * y, 5), Quaternion.identity, gameObject.transform);
+                    Instantiate(dirt, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
                 }
-
             }
         }
     }
