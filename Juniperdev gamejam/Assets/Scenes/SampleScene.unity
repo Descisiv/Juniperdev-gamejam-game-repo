@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 930507180}
   - component: {fileID: 930507181}
   - component: {fileID: 930507182}
+  - component: {fileID: 930507183}
   m_Layer: 7
   m_Name: drillBit
   m_TagString: Untagged
@@ -655,8 +656,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56672426a7e74649b1b68e3c80ff20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UraniumCollider: {fileID: 930507183}
   playermove: {fileID: 1324310243}
   timerhandler: {fileID: 1963154470}
+--- !u!58 &930507183
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930507179}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.85}
+  serializedVersion: 2
+  m_Radius: 17.5
 --- !u!1 &931262509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1107,7 @@ MonoBehaviour:
   Anim: {fileID: 1324310244}
   ChargeSlider: {fileID: 2028638616}
   charge: 0
+  speed: 22
   state: static
 --- !u!95 &1324310244
 Animator:

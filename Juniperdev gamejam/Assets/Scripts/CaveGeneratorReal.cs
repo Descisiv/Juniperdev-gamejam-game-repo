@@ -21,12 +21,15 @@ public class CaveGeneratorReal : MonoBehaviour
     //ores are randomly generated after cave generation, considering all filled in blocks
     [Range(0, 1)]
     public float randDiamondPercent;
+    [Range(0, 1)]
+    public float randUraniumPercent;
     [Range(0, 8)]
     public int threshold;
 
     public GameObject stone;
     public GameObject dirt;
     public GameObject Diamond;
+    public GameObject Uranium;
     private void Awake()
     {
         GenerateCave();
@@ -124,9 +127,15 @@ public class CaveGeneratorReal : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (!(cavePoints[x, y] == 0) && randChoice.NextDouble() <= randDiamondPercent)
+                if (!(cavePoints[x, y] == 0))
                 {
-                    cavePoints[x, y] = 3;
+                    if (randChoice.NextDouble() <= randDiamondPercent)
+                    {
+                        cavePoints[x, y] = 3;
+                    }else if(randChoice.NextDouble() <= randUraniumPercent)
+                    {
+                        cavePoints[x, y] = 4;
+                    }
                 }
             }
         }
@@ -172,6 +181,10 @@ public class CaveGeneratorReal : MonoBehaviour
                 }else if (cavePoints[x, y] == 3)
                 {
                     Instantiate(Diamond, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
+                }else if (cavePoints[x, y] == 4)
+                {
+                    Instantiate(Uranium, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
+
                 }
             }
         }

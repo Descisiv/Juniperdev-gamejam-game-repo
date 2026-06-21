@@ -10,7 +10,7 @@ public class Playermove : MonoBehaviour
     public Animator Anim;
     public Slider ChargeSlider;
     public float charge;
-    float speed = 22f;
+    public float speed = 22f;
     const float CHARGERATE = 100;
     const float NATRCHARGEDEC = 5;
     const float MAXCHARGE = 100;
