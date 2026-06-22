@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
+    public float TimeSinceCollision;
     public CaveGeneratorReal caveGen;
     public bool frozen;
     public Animator Anim;
@@ -27,6 +28,8 @@ public class Playermove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TimeSinceCollision += Time.deltaTime;
+
         //might be a state machine
         if (Input.GetKey(KeyCode.Space) && !frozen) {
             state = "charging";
@@ -76,5 +79,10 @@ public class Playermove : MonoBehaviour
         Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * 5);
         //set bar
         ChargeSlider.value = charge / MAXCHARGE;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TimeSinceCollision = 0;
     }
 }

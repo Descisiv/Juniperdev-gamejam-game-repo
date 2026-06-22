@@ -9,6 +9,7 @@ public class TimerHandler : MonoBehaviour
     float DepthOffset;
     float Depth;
     public bool playing;
+    public Playermove playermove;
     public GameObject Player;
     public TMP_Text Depthometer;
     public TMP_Text Timer;
@@ -29,7 +30,14 @@ public class TimerHandler : MonoBehaviour
         Depthometer.text = Depth.ToString() + "m";
         if (playing)
         {
-            TimeLeft -= Time.deltaTime;
+            if (playermove.TimeSinceCollision < 0.5f)
+            {
+                TimeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                TimeLeft -= Time.deltaTime * 0.5f;
+            }
         }
         if(Mathf.Floor(TimeLeft) == 0)
         {
