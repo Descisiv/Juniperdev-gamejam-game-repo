@@ -10,9 +10,13 @@ public class Playermove : MonoBehaviour
     public float CHARGERATE = 100;
     public float NATRCHARGEDEC = 5;
     public float MAXCHARGE = 100;
-    public float airborneTimeSave = 0.5f;
+    public float airborneTimeSave = 2;
+    public float chargeTaxDecrease = 0;
+    public float depthScalingSpeed = 0;
+    public float chainsawLength = 0;
 
-
+    public float DepthOffset;
+    public float Depth;
     public float TimeSinceCollision;
     public CaveGeneratorReal caveGen;
     public bool frozen;
@@ -23,15 +27,19 @@ public class Playermove : MonoBehaviour
     const float TURNRATE = 150;
     float turn;
     public string state = "static";
+    
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(caveGen.width / 2 * caveGen.gridSize, caveGen.height * caveGen.gridSize + 2.5f);
+        DepthOffset = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Depth = transform.position.y * -1 + DepthOffset;
+
         TimeSinceCollision += Time.deltaTime;
 
         //might be a state machine
@@ -70,7 +78,7 @@ public class Playermove : MonoBehaviour
         if (state == "drilling")
         {
             float angle = transform.localEulerAngles.z * Mathf.PI/180;
-            transform.position += new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * charge / MAXCHARGE * speed * Time.deltaTime;
+            transform.position += new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * charge / MAXCHARGE * (speed + depthScalingSpeed * Depth / 100) * Time.deltaTime;
         }
         //charge naturally decays
         if (charge > 0 && state != "charging")

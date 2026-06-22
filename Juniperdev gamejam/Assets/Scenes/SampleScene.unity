@@ -596,7 +596,7 @@ Transform:
   m_GameObject: {fileID: 930507179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.708, z: 0}
+  m_LocalPosition: {x: 0, y: -1.175, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -634,7 +634,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.875}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -661,7 +661,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UraniumCollider: {fileID: 930507183}
   playermove: {fileID: 1324310243}
+  Player: {fileID: 1324310238}
   timerhandler: {fileID: 1963154470}
+  LAYERMASK:
+    serializedVersion: 2
+    m_Bits: 1856
 --- !u!58 &930507183
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -694,7 +698,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.85}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 17.5
 --- !u!1 &931262509
@@ -1107,13 +1111,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16eb73519d0cf304892d6e4d58bcd60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 22
+  CHARGERATE: 100
+  NATRCHARGEDEC: 5
+  MAXCHARGE: 100
+  airborneTimeSave: 0.5
+  chargeTaxDecrease: 0
+  depthScalingSpeed: 0
+  chainsawLength: 0
+  DepthOffset: 0
+  Depth: 0
   TimeSinceCollision: 0
   caveGen: {fileID: 485505694}
   frozen: 0
   Anim: {fileID: 1324310244}
   ChargeSlider: {fileID: 2028638616}
   charge: 0
-  speed: 22
   state: static
 --- !u!95 &1324310244
 Animator:
@@ -1148,6 +1161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069ba6738f27aed4e9818389d42ebbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playermove: {fileID: 1324310243}
+  timer: {fileID: 1963154470}
 --- !u!1 &1402419894
 GameObject:
   m_ObjectHideFlags: 0

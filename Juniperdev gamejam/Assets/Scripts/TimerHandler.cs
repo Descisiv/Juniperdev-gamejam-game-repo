@@ -36,7 +36,7 @@ public class TimerHandler : MonoBehaviour
             }
             else
             {
-                TimeLeft -= Time.deltaTime * 0.5f;
+                TimeLeft -= Time.deltaTime / playermove.airborneTimeSave;
             }
         }
         if(Mathf.Floor(TimeLeft) == 0)

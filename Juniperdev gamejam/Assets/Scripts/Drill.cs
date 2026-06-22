@@ -11,7 +11,9 @@ public class Drill : MonoBehaviour
     public CircleCollider2D UraniumCollider;
     bool UraniumBuffActive;
     public Playermove playermove;
+    public GameObject Player;
     public TimerHandler timerhandler;
+    public LayerMask LAYERMASK;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,30 @@ public class Drill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (playermove.state == "drilling")
+        {
+            float angle = Player.transform.localEulerAngles.z * Mathf.PI / 180;
+            RaycastHit2D ChainsawRay = Physics2D.Raycast(transform.position, new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0), playermove.chainsawLength, LAYERMASK);
+
+            Debug.DrawRay(transform.position, new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * playermove.chainsawLength, Color.red);
+
+            if(ChainsawRay != false)
+            {
+                GameObject rock = ChainsawRay.collider.gameObject;
+                if(rock.layer == 9)
+                {
+                    timerhandler.TimeLeft += 5;
+                }else if(rock.layer == 10)
+                {
+                    if (!UraniumBuffActive)
+                    {
+                        playermove.charge -= uraniumChargeTax;
+                    }
+                    StartCoroutine(OnMineUranium());
+                }
+                Destroy(rock);
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -33,7 +58,7 @@ public class Drill : MonoBehaviour
                 Destroy(collision.gameObject);
                 if (!UraniumBuffActive)
                 {
-                    playermove.charge -= stoneChargeTax;
+                    playermove.charge -= stoneChargeTax - playermove.chargeTaxDecrease;
                 }
             }
             else if(collision.gameObject.layer == 8 && playermove.charge >= dirtChargeTax && playermove.state == "drilling")
@@ -41,7 +66,7 @@ public class Drill : MonoBehaviour
                 Destroy(collision.gameObject);
                 if (!UraniumBuffActive)
                 {
-                    playermove.charge -= dirtChargeTax;
+                    playermove.charge -= dirtChargeTax - playermove.chargeTaxDecrease;
                 }
             }
             else if (collision.gameObject.layer == 9 && playermove.charge >= dirtChargeTax && playermove.state == "drilling")
@@ -49,7 +74,7 @@ public class Drill : MonoBehaviour
                 Destroy(collision.gameObject);
                 if (!UraniumBuffActive)
                 {
-                    playermove.charge -= diamondChargeTax;
+                    playermove.charge -= diamondChargeTax - playermove.chargeTaxDecrease;
                 }
                 timerhandler.TimeLeft += 5;
             }else if (collision.gameObject.layer == 10 && playermove.charge >= dirtChargeTax && playermove.state == "drilling")
@@ -57,7 +82,7 @@ public class Drill : MonoBehaviour
                 Destroy(collision.gameObject);
                 if (!UraniumBuffActive)
                 {
-                    playermove.charge -= uraniumChargeTax;
+                    playermove.charge -= uraniumChargeTax - playermove.chargeTaxDecrease;
                 }
                 StartCoroutine(OnMineUranium());
             }
@@ -66,8 +91,6 @@ public class Drill : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playermove.state == "drilling")
-        {
             if (collision.gameObject.layer == 6 && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
             {
                 Destroy(collision.gameObject);
@@ -102,7 +125,6 @@ public class Drill : MonoBehaviour
                 }
                 StartCoroutine(OnMineUranium());
             }
-        }
     }
 
     IEnumerator OnMineUranium()
