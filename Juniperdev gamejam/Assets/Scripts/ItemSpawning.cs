@@ -8,6 +8,9 @@ using UnityEngine;
 
 public class ItemSpawning : MonoBehaviour
 {
+    public string[] itemNames;
+    public GameObject[] itemSet;
+
     [Range(0, 100)]
     public int spawnChance;
 
@@ -16,6 +19,7 @@ public class ItemSpawning : MonoBehaviour
 
     //private CaveGeneratorReal generatorReference;
     public GameObject items;
+    public int itemChosen;
     private int[,] cavePointsClone;
     private Vector2 checkLocation;
 
@@ -65,8 +69,10 @@ public class ItemSpawning : MonoBehaviour
                     {
                         if (randChoice.Next(0, 100) < spawnChance)
                         {
-                            GameObject child = Instantiate(items, new Vector3(x, y, 5), Quaternion.identity, gameObject.transform);
-                            child.transform.localPosition = new Vector3(x, y, 5);
+                            itemChosen = randChoice.Next(0, 1000000) % itemNames.Length;
+
+                            GameObject child = Instantiate(itemSet[itemChosen], new Vector3(x, y, -5), Quaternion.identity, gameObject.transform);
+                            child.transform.localPosition = new Vector3(x, y, -5);
                             child.transform.localRotation = Quaternion.identity;
                             //Debug.Log("A devil fruit has spawned at " + x + "," + y);
                         }

@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class Playermove : MonoBehaviour
 {
+    //player stats that can be improved with items
+    public float speed = 22f;
+    public float CHARGERATE = 100;
+    public float NATRCHARGEDEC = 5;
+    public float MAXCHARGE = 100;
+    public float airborneTimeSave = 0.5f;
+
+
     public float TimeSinceCollision;
     public CaveGeneratorReal caveGen;
     public bool frozen;
     public Animator Anim;
     public Slider ChargeSlider;
     public float charge;
-    public float speed = 22f;
-    const float CHARGERATE = 100;
-    const float NATRCHARGEDEC = 5;
-    const float MAXCHARGE = 100;
     const float MAXANGLE = 90;
     const float TURNRATE = 150;
     float turn;
