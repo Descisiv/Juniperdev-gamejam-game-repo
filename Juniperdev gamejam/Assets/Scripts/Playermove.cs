@@ -15,7 +15,7 @@ public class Playermove : MonoBehaviour
     const float NATRCHARGEDEC = 5;
     const float MAXCHARGE = 100;
     const float MAXANGLE = 90;
-    const float TURNRATE = 180;
+    const float TURNRATE = 150;
     float turn;
     public string state = "static";
     // Start is called before the first frame update

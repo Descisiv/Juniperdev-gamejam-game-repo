@@ -113,7 +113,6 @@ public class Drill : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         UraniumCollider.enabled = false;
         yield return new WaitForSeconds(2);
-        print("diddy");
         playermove.speed -= 30;
         UraniumBuffActive = false;
     }

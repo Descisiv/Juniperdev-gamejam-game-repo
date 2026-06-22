@@ -6,8 +6,11 @@ using TMPro;
 
 public class TimerHandler : MonoBehaviour
 {
+    float DepthOffset;
+    float Depth;
     public bool playing;
     public GameObject Player;
+    public TMP_Text Depthometer;
     public TMP_Text Timer;
     public float TimeLeft = 30;
     string seconds;
@@ -15,12 +18,15 @@ public class TimerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DepthOffset = Player.transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Depth = Mathf.Round(Player.transform.position.y * -1 + DepthOffset);
+
+        Depthometer.text = Depth.ToString() + "m";
         if (playing)
         {
             TimeLeft -= Time.deltaTime;
