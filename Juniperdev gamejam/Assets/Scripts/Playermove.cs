@@ -110,9 +110,17 @@ public class Playermove : MonoBehaviour
 
         
         //animation speed proportional to charge
-        Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * 5);
+        Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * speed / 2);
         //set bar
         ChargeSlider.value = charge / MAXCHARGE;
+
+        if(transform.position.x < 0)
+        {
+            transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        }else if(transform.position.x > (caveGen.width - 1) * caveGen.gridSize)
+        {
+            transform.position = new Vector3((caveGen.width - 1) * caveGen.gridSize, transform.position.y, transform.position.z);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

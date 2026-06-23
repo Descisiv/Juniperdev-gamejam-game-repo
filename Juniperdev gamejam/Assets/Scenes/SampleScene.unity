@@ -1111,6 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16eb73519d0cf304892d6e4d58bcd60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeSlow: 1
   speed: 22
   CHARGERATE: 100
   NATRCHARGEDEC: 5
@@ -1979,7 +1980,7 @@ MonoBehaviour:
   Player: {fileID: 1324310238}
   Depthometer: {fileID: 1464613106}
   Timer: {fileID: 1551143406}
-  TimeLeft: 59.99
+  TimeLeft: 30
 --- !u!4 &1963154471
 Transform:
   m_ObjectHideFlags: 0
