@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 5658729203363566118, guid: c5fbffa251895804c842a011d3fd0b5f, type: 3}
   - {fileID: 5658729203363566118, guid: ae9c4b547b5e8d3478feb0138dfeaffb, type: 3}
   - {fileID: 5658729203363566118, guid: 462beeba1d3f64e4a99b30d34436fef5, type: 3}
-  spawnChance: 1
+  spawnChance: 3
   width: 250
   height: 125
   items: {fileID: 1743342900945934677}

@@ -15,6 +15,7 @@ public class Playermove : MonoBehaviour
     public float depthScalingSpeed = 0;
     public float chainsawLength = 0;
 
+    bool InvertedControls;
     public float DepthOffset;
     public float Depth;
     public float TimeSinceCollision;
@@ -38,6 +39,10 @@ public class Playermove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            InvertedControls = !InvertedControls;
+        }
         Depth = transform.position.y * -1 + DepthOffset;
 
         TimeSinceCollision += Time.deltaTime;
@@ -59,13 +64,29 @@ public class Playermove : MonoBehaviour
 
         //hold a/d to change angle
         turn = Input.GetAxisRaw("Horizontal");
-        if (transform.localEulerAngles.z < MAXANGLE || transform.localEulerAngles.z > 360 - MAXANGLE * 2 && turn == 1)
+        if (InvertedControls)
         {
-            transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
-        }else if((transform.localEulerAngles.z > 360 - MAXANGLE || transform.localEulerAngles.z < 2 * MAXANGLE) && turn == -1)
-        {
-            transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+            if (transform.localEulerAngles.z < MAXANGLE || transform.localEulerAngles.z > 360 - MAXANGLE * 2 && turn == -1)
+            {
+                transform.localEulerAngles -= new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+            }
+            else if ((transform.localEulerAngles.z > 360 - MAXANGLE || transform.localEulerAngles.z < 2 * MAXANGLE) && turn == 1)
+            {
+                transform.localEulerAngles -= new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+            }
         }
+        else
+        {
+            if (transform.localEulerAngles.z < MAXANGLE || transform.localEulerAngles.z > 360 - MAXANGLE * 2 && turn == 1)
+            {
+                transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+            }
+            else if ((transform.localEulerAngles.z > 360 - MAXANGLE || transform.localEulerAngles.z < 2 * MAXANGLE) && turn == -1)
+            {
+                transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
+            }
+        }
+        
         
 
         //when holding space, drill velocity(charge) increases

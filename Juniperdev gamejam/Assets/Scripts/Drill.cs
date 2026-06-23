@@ -33,16 +33,25 @@ public class Drill : MonoBehaviour
             if(ChainsawRay != false)
             {
                 GameObject rock = ChainsawRay.collider.gameObject;
+                
                 if(rock.layer == 9)
                 {
+                    playermove.charge -= diamondChargeTax - playermove.chargeTaxDecrease;
                     timerhandler.TimeLeft += 5;
                 }else if(rock.layer == 10)
                 {
                     if (!UraniumBuffActive)
                     {
+                        playermove.charge -= uraniumChargeTax - playermove.chargeTaxDecrease;
                         playermove.charge -= uraniumChargeTax;
                     }
                     StartCoroutine(OnMineUranium());
+                }else if(rock.layer == 6)
+                {
+                    playermove.charge -= stoneChargeTax - playermove.chargeTaxDecrease;
+                }else if(rock.layer == 8)
+                {
+                    playermove.charge -= dirtChargeTax - playermove.chargeTaxDecrease;
                 }
                 Destroy(rock);
             }
