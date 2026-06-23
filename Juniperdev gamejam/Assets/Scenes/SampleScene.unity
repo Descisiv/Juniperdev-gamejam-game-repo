@@ -1559,7 +1559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30:00
+  m_text: 59:99
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec6fa619bd6e7ab4bbe50d1963e4497f, type: 2}
   m_sharedMaterial: {fileID: 6181150741506839381, guid: ec6fa619bd6e7ab4bbe50d1963e4497f, type: 2}
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   Player: {fileID: 1324310238}
   Depthometer: {fileID: 1464613106}
   Timer: {fileID: 1551143406}
-  TimeLeft: 30
+  TimeLeft: 59.99
 --- !u!4 &1963154471
 Transform:
   m_ObjectHideFlags: 0

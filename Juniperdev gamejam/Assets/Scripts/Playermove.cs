@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Playermove : MonoBehaviour
 {
     //player stats that can be improved with items
-    public float speed = 22f;
+    public float timeSlow = 1;
+    public float speed = 10f;
     public float CHARGERATE = 100;
     public float NATRCHARGEDEC = 5;
     public float MAXCHARGE = 100;

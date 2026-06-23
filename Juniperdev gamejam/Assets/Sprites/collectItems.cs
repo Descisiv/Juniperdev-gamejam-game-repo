@@ -34,15 +34,15 @@ public class collectItems : MonoBehaviour
                     break;
                 case 13:
                     //wd40
-                    playermove.speed += 5;
+                    playermove.speed += 2;
                     break;
                 case 14:
                     //hourglass
-                    timer.TimeLeft += 5;
+                    playermove.timeSlow *= 1.25f;
                     break;
                 case 15:
                     //valve
-                    playermove.depthScalingSpeed += 0.25f;
+                    playermove.depthScalingSpeed += 0.1f;
                     break;
                 case 16:
                     //parachute

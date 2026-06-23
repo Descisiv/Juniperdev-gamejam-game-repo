@@ -13,7 +13,7 @@ public class TimerHandler : MonoBehaviour
     public GameObject Player;
     public TMP_Text Depthometer;
     public TMP_Text Timer;
-    public float TimeLeft = 30;
+    public float TimeLeft = 59.99f;
     string seconds;
     string centiseconds;
     // Start is called before the first frame update
@@ -32,11 +32,11 @@ public class TimerHandler : MonoBehaviour
         {
             if (playermove.TimeSinceCollision < 0.5f)
             {
-                TimeLeft -= Time.deltaTime;
+                TimeLeft -= Time.deltaTime / playermove.timeSlow;
             }
             else
             {
-                TimeLeft -= Time.deltaTime / playermove.airborneTimeSave;
+                TimeLeft -= Time.deltaTime / playermove.timeSlow / playermove.airborneTimeSave;
             }
         }
         if(Mathf.Floor(TimeLeft) == 0)
