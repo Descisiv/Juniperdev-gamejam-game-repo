@@ -23,6 +23,8 @@ public class CaveGeneratorReal : MonoBehaviour
     public float randDiamondPercent;
     [Range(0, 1)]
     public float randUraniumPercent;
+    [Range(0, 1)]
+    public float randRubyPercent;
     [Range(0, 8)]
     public int threshold;
     [Range(0, 1)]
@@ -36,6 +38,7 @@ public class CaveGeneratorReal : MonoBehaviour
     public GameObject Diamond;
     public GameObject Uranium;
     public GameObject Lava;
+    public GameObject Ruby;
     private void Awake()
     {
         GenerateCave();
@@ -148,6 +151,12 @@ public class CaveGeneratorReal : MonoBehaviour
                     {
                         cavePoints[x, y] = 4;
                     }
+
+                    if (randChoice.NextDouble() <= randRubyPercent)
+                    {
+                        cavePoints[x, y] = 6;
+                    }
+
                 }
 
             }
@@ -230,6 +239,10 @@ public class CaveGeneratorReal : MonoBehaviour
                 else if (cavePoints[x, y] == 5)
                 {
                     Instantiate(Lava, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
+                }
+                else if (cavePoints[x, y] == 6)
+                {
+                    Instantiate(Ruby, new Vector3(gridSize * x, gridSize * y, 5) + transform.position, Quaternion.identity, gameObject.transform);
                 }
             }
         }

@@ -666,6 +666,7 @@ MonoBehaviour:
   LAYERMASK:
     serializedVersion: 2
     m_Bits: 1856
+  lava: {fileID: 1324310246}
 --- !u!58 &930507183
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1190,6 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1963154470}
   player: {fileID: 1324310243}
+  immunity: 0
 --- !u!1 &1402419894
 GameObject:
   m_ObjectHideFlags: 0
