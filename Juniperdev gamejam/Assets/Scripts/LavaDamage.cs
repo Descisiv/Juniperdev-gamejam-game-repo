@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class LavaDamage : MonoBehaviour
 {
     public TimerHandler timer;
     public Playermove player;
+    public TMP_Text timerText;
 
-    private bool inLava = false;
+    private int inLava = 0;
     private bool debounce = false;
     private float tempTime = 1;
     public bool immunity = false;
@@ -20,34 +23,40 @@ public class LavaDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inLava && debounce && !immunity)
+        if (inLava > 0 && debounce && !immunity)
         {
             tempTime = player.timeSlow;
             player.timeSlow = 0.1f;
             debounce = false;
         }
-        else if (!inLava && !debounce)
+        else if (inLava <= 0 && !debounce)
         {
             player.timeSlow = tempTime;
             debounce = true;
+        }
+        if(inLava == 0)
+        {
+            timerText.color = new Vector4(0, 0, 0, 255);
+        }
+        else
+        {
+            timerText.color = new Vector4(255, 0, 0, 255);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Lava") && !inLava)
+        if (collision.CompareTag("Lava") && inLava <= 0)
         {
-            inLava = true;
-            Debug.Log("IN LAVA!!!!!!");
+            inLava ++;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Lava") && inLava)
+        if (collision.CompareTag("Lava") && inLava > 0)
         {
-            inLava = false;
-            Debug.Log("Out of lava");
+            inLava --;
 
         }
     }

@@ -367,9 +367,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 876041218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -9.1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -59.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &789905099
@@ -544,8 +544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 244}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 152.58148}
+  m_SizeDelta: {x: 100, y: 200.1792}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &876041219
 Animator:
@@ -617,7 +617,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2097152
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -682,7 +682,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2097152
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1191,6 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1963154470}
   player: {fileID: 1324310243}
+  timerText: {fileID: 1551143406}
   immunity: 0
 --- !u!1 &1402419894
 GameObject:
@@ -1716,10 +1717,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 876041218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -85.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 18.8}
+  m_SizeDelta: {x: 200, y: 83.5018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1565141455
 MonoBehaviour:
@@ -1741,7 +1742,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press SPACE to start
+  m_text: 'SPACE to charge, A & D to steer, Q for inverted controls
+
+
+    Press SPACE
+    to start'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec6fa619bd6e7ab4bbe50d1963e4497f, type: 2}
   m_sharedMaterial: {fileID: 6181150741506839381, guid: ec6fa619bd6e7ab4bbe50d1963e4497f, type: 2}
