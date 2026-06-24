@@ -1175,7 +1175,7 @@ MonoBehaviour:
   - {fileID: 8337014332038163950, guid: 1ad65838e847a5b4098cc54d61431b71, type: 3}
   - {fileID: 8337014332038163950, guid: da5c30b391c53ac4195cdd194a260dff, type: 3}
   - {fileID: 8337014332038163950, guid: e3b062ecb809a8746bbb521699d0d49c, type: 3}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1402419898}
 --- !u!114 &1324310246
 MonoBehaviour:
   m_ObjectHideFlags: 0
