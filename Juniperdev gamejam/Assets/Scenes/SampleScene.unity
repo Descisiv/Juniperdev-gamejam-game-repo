@@ -1165,6 +1165,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playermove: {fileID: 1324310243}
   timer: {fileID: 1963154470}
+  itemBanners:
+  - {fileID: 8337014332038163950, guid: cf3531443986bb64a80eb5e72c270b1c, type: 3}
+  - {fileID: 8337014332038163950, guid: caac2e4e41b4a3d4a98d6f5ac93fd8bf, type: 3}
+  - {fileID: 8337014332038163950, guid: ffca6e65204fa8742954488a1503cbd1, type: 3}
+  - {fileID: 8337014332038163950, guid: b35e29e4c7aebf74da3e90d991f8eec5, type: 3}
+  - {fileID: 8337014332038163950, guid: 3522ec619eab61241b6809f2c552ea68, type: 3}
+  - {fileID: 8337014332038163950, guid: f0de9e0ef50279147bd8ab6c6559372a, type: 3}
+  - {fileID: 8337014332038163950, guid: 1ad65838e847a5b4098cc54d61431b71, type: 3}
+  - {fileID: 8337014332038163950, guid: da5c30b391c53ac4195cdd194a260dff, type: 3}
+  - {fileID: 8337014332038163950, guid: e3b062ecb809a8746bbb521699d0d49c, type: 3}
+  canvas: {fileID: 0}
 --- !u!114 &1324310246
 MonoBehaviour:
   m_ObjectHideFlags: 0
