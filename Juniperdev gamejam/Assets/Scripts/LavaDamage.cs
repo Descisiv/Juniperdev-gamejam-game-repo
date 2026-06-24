@@ -10,6 +10,7 @@ public class LavaDamage : MonoBehaviour
     private bool inLava = false;
     private bool debounce = false;
     private float tempTime = 1;
+    public bool immunity = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class LavaDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inLava && debounce)
+        if (inLava && debounce && !immunity)
         {
             tempTime = player.timeSlow;
             player.timeSlow = 0.1f;
