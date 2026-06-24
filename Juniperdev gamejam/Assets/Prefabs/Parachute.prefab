@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2720062726932555745}
   - component: {fileID: 949738768559397249}
   - component: {fileID: 1177032197652902408}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Parachute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
