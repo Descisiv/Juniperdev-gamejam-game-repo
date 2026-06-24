@@ -952,6 +952,7 @@ GameObject:
   - component: {fileID: 1324310243}
   - component: {fileID: 1324310244}
   - component: {fileID: 1324310245}
+  - component: {fileID: 1324310246}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1164,6 +1165,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playermove: {fileID: 1324310243}
   timer: {fileID: 1963154470}
+--- !u!114 &1324310246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324310238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2312dace0a08c8c499def7f3aaa26928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 1963154470}
+  player: {fileID: 1324310243}
 --- !u!1 &1402419894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2157,14 @@ PrefabInstance:
       objectReference: {fileID: 4604925247813592685, guid: d56d9c1d6ed41074fb5be67c44617db6, type: 3}
     - target: {fileID: 1786470293014803843, guid: a51198c6a8e4b0f448353bd8d38b033c, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786470293014803843, guid: a51198c6a8e4b0f448353bd8d38b033c, type: 3}
+      propertyPath: lavaThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786470293014803843, guid: a51198c6a8e4b0f448353bd8d38b033c, type: 3}
+      propertyPath: randLavaPercent
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5250764161975035852, guid: a51198c6a8e4b0f448353bd8d38b033c, type: 3}

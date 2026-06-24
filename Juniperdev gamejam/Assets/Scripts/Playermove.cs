@@ -29,7 +29,7 @@ public class Playermove : MonoBehaviour
     const float TURNRATE = 150;
     float turn;
     public string state = "static";
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,15 +49,17 @@ public class Playermove : MonoBehaviour
         TimeSinceCollision += Time.deltaTime;
 
         //might be a state machine
-        if (Input.GetKey(KeyCode.Space) && !frozen) {
+        if (Input.GetKey(KeyCode.Space) && !frozen)
+        {
             state = "charging";
             Anim.SetInteger("state", 2);
-        }else if(charge > 0 && !frozen)
+        }
+        else if (charge > 0 && !frozen)
         {
             state = "drilling";
             Anim.SetInteger("state", 1);
         }
-        else if(!frozen)
+        else if (!frozen)
         {
             state = "static";
             Anim.SetInteger("state", 0);
@@ -87,8 +89,8 @@ public class Playermove : MonoBehaviour
                 transform.localEulerAngles += new Vector3(0, 0, turn * TURNRATE * Time.deltaTime);
             }
         }
-        
-        
+
+
 
         //when holding space, drill velocity(charge) increases
         if (state == "charging" && charge < MAXCHARGE)
@@ -99,7 +101,7 @@ public class Playermove : MonoBehaviour
         //update position according to charge and angle
         if (state == "drilling")
         {
-            float angle = transform.localEulerAngles.z * Mathf.PI/180;
+            float angle = transform.localEulerAngles.z * Mathf.PI / 180;
             transform.position += new Vector3(Mathf.Sin(angle), -1 * Mathf.Cos(angle), 0) * charge / MAXCHARGE * (speed + depthScalingSpeed * Depth / 100) * Time.deltaTime;
         }
         //charge naturally decays
@@ -108,16 +110,17 @@ public class Playermove : MonoBehaviour
             charge -= NATRCHARGEDEC * Time.deltaTime;
         }
 
-        
+
         //animation speed proportional to charge
         Anim.SetFloat("DrillSpeed", charge / MAXCHARGE * speed / 2);
         //set bar
         ChargeSlider.value = charge / MAXCHARGE;
 
-        if(transform.position.x < 0)
+        if (transform.position.x < 0)
         {
             transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        }else if(transform.position.x > (caveGen.width - 1) * caveGen.gridSize)
+        }
+        else if (transform.position.x > (caveGen.width - 1) * caveGen.gridSize)
         {
             transform.position = new Vector3((caveGen.width - 1) * caveGen.gridSize, transform.position.y, transform.position.z);
         }

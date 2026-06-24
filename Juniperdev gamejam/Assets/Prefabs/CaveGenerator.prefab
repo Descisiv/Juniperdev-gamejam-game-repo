@@ -141,10 +141,14 @@ MonoBehaviour:
   randDiamondPercent: 0.0025
   randUraniumPercent: 0.0005
   threshold: 4
+  randLavaPercent: 0.2625
+  lavaThreshold: 3
+  lavaSmoothCycles: 4
   stone: {fileID: 4604925247813592685, guid: d56d9c1d6ed41074fb5be67c44617db6, type: 3}
   dirt: {fileID: 4604925247813592685, guid: 7a36b745e18eeac468c643791a9e54a8, type: 3}
   Diamond: {fileID: 4604925247813592685, guid: 6704edc37a13a2e48a972250841ec95b, type: 3}
   Uranium: {fileID: 4604925247813592685, guid: 18ad4d1f10b19004cab1f061e699c781, type: 3}
+  Lava: {fileID: 871238717134253690, guid: 25f29c75055556f4c8cbc083451e3731, type: 3}
 --- !u!114 &5250764161975035852
 MonoBehaviour:
   m_ObjectHideFlags: 0
