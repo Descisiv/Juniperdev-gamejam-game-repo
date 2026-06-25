@@ -141,7 +141,6 @@ public class CaveGeneratorReal : MonoBehaviour
                     if (randChoice.NextDouble() <= randLavaPercent && !(cavePoints[x, y] == 0) && x >= 5 && x < width - 5 && y >= 5 && y < height - 5)
                     {
                         cavePoints[x, y] = 5;
-                        Debug.Log("Lava created");
                     }
                     if (randChoice.NextDouble() <= randDiamondPercent)
                     {
@@ -173,7 +172,6 @@ public class CaveGeneratorReal : MonoBehaviour
                     int neighboringLava = GetNeighbors(x, y, 5);
                     if (neighboringLava > lavaThreshold && !(cavePoints[x, y] == 0) && x >= 5 && x < width - 5 && y >= 5 && y < height - 5)
                     {
-                        Debug.Log("Lava made in cycle " + i);
                         cavePoints[x, y] = 5;
                     }
                     else if (neighboringLava < lavaThreshold && cavePoints[x, y] == 5)

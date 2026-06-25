@@ -34,11 +34,28 @@ public class Drill : MonoBehaviour
             if (ChainsawRay != false)
             {
                 GameObject rock = ChainsawRay.collider.gameObject;
-
+                if (rock.layer == 20 && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
+                {
+                    Destroy(rock);
+                    if (!UraniumBuffActive)
+                    {
+                        playermove.charge -= stoneChargeTax;
+                    }
+                    StartCoroutine(OnMineRuby());
+                }
+                if (rock.layer == 21 && lava.immunity && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
+                {
+                    Destroy(rock);
+                    if (!UraniumBuffActive)
+                    {
+                        playermove.charge -= stoneChargeTax;
+                    }
+                }
                 if (rock.layer == 9)
                 {
                     playermove.charge -= diamondChargeTax - playermove.chargeTaxDecrease;
                     timerhandler.TimeLeft += 5;
+                    Destroy(rock);
                 }
                 else if (rock.layer == 10)
                 {
@@ -47,17 +64,20 @@ public class Drill : MonoBehaviour
                         playermove.charge -= uraniumChargeTax - playermove.chargeTaxDecrease;
                         playermove.charge -= uraniumChargeTax;
                     }
+                    Destroy(rock);
                     StartCoroutine(OnMineUranium());
                 }
                 else if (rock.layer == 6)
                 {
                     playermove.charge -= stoneChargeTax - playermove.chargeTaxDecrease;
+                    Destroy(rock);
                 }
                 else if (rock.layer == 8)
                 {
                     playermove.charge -= dirtChargeTax - playermove.chargeTaxDecrease;
+                    Destroy(rock);
                 }
-                Destroy(rock);
+
             }
         }
     }
@@ -66,6 +86,23 @@ public class Drill : MonoBehaviour
     {
         if (playermove.state == "drilling")
         {
+            if (collision.gameObject.layer == 20 && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
+            {
+                Destroy(collision.gameObject);
+                if (!UraniumBuffActive)
+                {
+                    playermove.charge -= stoneChargeTax;
+                }
+                StartCoroutine(OnMineRuby());
+            }
+            if (collision.gameObject.layer == 21 && lava.immunity && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
+            {
+                Destroy(collision.gameObject);
+                if (!UraniumBuffActive)
+                {
+                    playermove.charge -= stoneChargeTax;
+                }
+            }
             if (collision.gameObject.layer == 6 && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
             {
                 Destroy(collision.gameObject);
@@ -116,7 +153,7 @@ public class Drill : MonoBehaviour
             }
             StartCoroutine(OnMineRuby());
         }
-        if (collision.CompareTag("Lava") && lava.immunity && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
+        if (collision.gameObject.layer == 21 && lava.immunity && playermove.charge >= stoneChargeTax && playermove.state == "drilling")
         {
             Destroy(collision.gameObject);
             if (!UraniumBuffActive)
