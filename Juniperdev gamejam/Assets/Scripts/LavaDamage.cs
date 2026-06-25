@@ -13,6 +13,7 @@ public class LavaDamage : MonoBehaviour
     private int inLava = 0;
     private float tempTime = 1;
     public bool immunity = false;
+    public bool debounce = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +23,16 @@ public class LavaDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inLava > 0 && !immunity)
+        if (inLava > 0 && !immunity && !debounce)
         {
             tempTime = player.timeSlow;
-            player.timeSlow = 0.1f;
+            player.timeSlow = 0.2f;
             timerText.color = new Vector4(255, 0, 0, 255);
+            debounce = true;
         }
-        else if (inLava <= 0)
+        else if (inLava <= 0 && debounce)
         {
+            debounce = false;
             player.timeSlow = tempTime;
             timerText.color = new Vector4(0, 0, 0, 255);
         }
